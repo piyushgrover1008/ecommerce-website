@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#5f0656",
+                    "secondary-dim": "#504f4f",
+                    "error": "#b41340",
+                    "primary-fixed-dim": "#718bff",
+                    "surface": "#f5f6f7",
+                    "inverse-primary": "#6d88ff",
+                    "secondary-container": "#e5e2e1",
+                    "error-container": "#f74b6d",
+                    "on-error-container": "#510017",
+                    "tertiary": "#913983",
+                    "on-secondary-container": "#525151",
+                    "tertiary-dim": "#832c76",
+                    "surface-variant": "#dadddf",
+                    "tertiary-fixed-dim": "#e883d2",
+                    "inverse-surface": "#0c0f10",
+                    "on-surface-variant": "#595c5d",
+                    "secondary-fixed": "#e5e2e1",
+                    "primary": "#0846ed",
+                    "tertiary-fixed": "#f790e0",
+                    "secondary-fixed-dim": "#d7d4d3",
+                    "primary-dim": "#003cd3",
+                    "surface-container": "#e6e8ea",
+                    "outline": "#757778",
+                    "on-surface": "#2c2f30",
+                    "on-primary-fixed-variant": "#00207e",
+                    "on-secondary-fixed-variant": "#5c5b5b",
+                    "primary-fixed": "#859aff",
+                    "on-tertiary": "#ffeef6",
+                    "surface-container-high": "#e0e3e4",
+                    "surface-tint": "#0846ed",
+                    "on-secondary": "#f5f2f1",
+                    "surface-container-low": "#eff1f2",
+                    "surface-container-highest": "#dadddf",
+                    "error-dim": "#a70138",
+                    "on-tertiary-fixed-variant": "#6a1460",
+                    "on-background": "#2c2f30",
+                    "on-tertiary-fixed": "#380033",
+                    "surface-bright": "#f5f6f7",
+                    "on-primary-fixed": "#000000",
+                    "secondary": "#5c5b5b",
+                    "on-primary": "#f2f1ff",
+                    "on-primary-container": "#001867",
+                    "background": "#f5f6f7",
+                    "surface-dim": "#d1d5d7",
+                    "inverse-on-surface": "#9b9d9e",
+                    "tertiary-container": "#f790e0",
+                    "on-error": "#ffefef",
+                    "outline-variant": "#abadae",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#859aff",
+                    "on-secondary-fixed": "#403f3f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .glass-nav {
+            background: rgba(245, 246, 247, 0.7);
+            backdrop-filter: blur(24px);
+        }
+        .cta-gradient {
+            background: linear-gradient(135deg, #0846ed 0%, #859aff 100%);
+        }
+        .ghost-border {
+            outline: 1px solid rgba(171, 173, 174, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar Shell -->
+<nav class="fixed top-0 w-full z-50 glass-nav">
+<div class="flex justify-between items-center px-8 py-4 max-w-[1440px] mx-auto">
+<div class="text-2xl font-black tracking-tighter text-zinc-900 font-headline">KINETIC</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-headline tracking-tight text-zinc-600 font-medium hover:text-blue-500 transition-colors duration-300" href="#">New Arrivals</a>
+<a class="font-headline tracking-tight text-blue-600 font-bold border-b-2 border-blue-600 transition-colors duration-300" href="#">Collections</a>
+<a class="font-headline tracking-tight text-zinc-600 font-medium hover:text-blue-500 transition-colors duration-300" href="#">Curated</a>
+<a class="font-headline tracking-tight text-zinc-600 font-medium hover:text-blue-500 transition-colors duration-300" href="#">Archive</a>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center bg-surface-container-low px-4 py-2 rounded-full ghost-border">
+<span class="material-symbols-outlined text-outline text-sm" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm ml-2 w-48 text-on-surface-variant font-body" placeholder="Search curated list..." type="text"/>
+</div>
+<button class="scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-zinc-900" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-zinc-900" data-icon="person">person</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-20 px-8 max-w-[1440px] mx-auto">
+<!-- Hero Editorial Section -->
+<header class="mb-16">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="max-w-2xl">
+<h1 class="text-5xl md:text-7xl font-headline font-black tracking-tighter text-on-background leading-none mb-6">
+                        COLLECTIONS <br/><span class="text-primary italic">2024</span>
+</h1>
+<p class="text-body-md text-secondary-dim max-w-md">
+                        Exploring the intersection of movement and material. Our latest drop features high-performance textiles engineered for the modern nomad.
+                    </p>
+</div>
+<div class="flex items-center gap-4 pb-2">
+<span class="font-label text-xs uppercase tracking-widest text-secondary font-bold">Showing 48 items</span>
+<div class="w-12 h-[1px] bg-outline-variant/30"></div>
+</div>
+</div>
+</header>
+<div class="flex flex-col lg:flex-row gap-12">
+<!-- Sidebar Filters -->
+<aside class="w-full lg:w-64 flex-shrink-0">
+<div class="sticky top-32 space-y-12">
+<!-- Category -->
+<section>
+<h3 class="font-label text-xs uppercase tracking-widest text-on-surface font-bold mb-6">Category</h3>
+<div class="space-y-3">
+<label class="flex items-center group cursor-pointer">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="ml-3 text-sm text-secondary-dim group-hover:text-primary transition-colors">Outerwear</span>
+</label>
+<label class="flex items-center group cursor-pointer">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="ml-3 text-sm text-on-surface font-semibold">Tops &amp; Knitwear</span>
+</label>
+<label class="flex items-center group cursor-pointer">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="ml-3 text-sm text-secondary-dim group-hover:text-primary transition-colors">Bottoms</span>
+</label>
+<label class="flex items-center group cursor-pointer">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="ml-3 text-sm text-secondary-dim group-hover:text-primary transition-colors">Accessories</span>
+</label>
+</div>
+</section>
+<!-- Color -->
+<section>
+<h3 class="font-label text-xs uppercase tracking-widest text-on-surface font-bold mb-6">Color Palette</h3>
+<div class="flex flex-wrap gap-3">
+<button class="w-8 h-8 rounded-full bg-zinc-900 ring-2 ring-offset-2 ring-primary transition-all"></button>
+<button class="w-8 h-8 rounded-full bg-stone-200 hover:ring-2 hover:ring-offset-2 hover:ring-outline transition-all"></button>
+<button class="w-8 h-8 rounded-full bg-[#0846ed] hover:ring-2 hover:ring-offset-2 hover:ring-outline transition-all"></button>
+<button class="w-8 h-8 rounded-full bg-zinc-500 hover:ring-2 hover:ring-offset-2 hover:ring-outline transition-all"></button>
+<button class="w-8 h-8 rounded-full bg-[#e5e2e1] hover:ring-2 hover:ring-offset-2 hover:ring-outline transition-all"></button>
+</div>
+</section>
+<!-- Price Range -->
+<section>
+<h3 class="font-label text-xs uppercase tracking-widest text-on-surface font-bold mb-6">Price</h3>
+<input class="w-full h-1 bg-surface-container-high rounded-lg appearance-none cursor-pointer accent-primary" max="1500" min="50" type="range" value="750"/>
+<div class="flex justify-between mt-4">
+<span class="text-xs text-secondary-dim">$50</span>
+<span class="text-xs font-bold text-on-surface">$1,500+</span>
+</div>
+</section>
+<!-- Size -->
+<section>
+<h3 class="font-label text-xs uppercase tracking-widest text-on-surface font-bold mb-6">Size</h3>
+<div class="grid grid-cols-3 gap-2">
+<button class="py-2 text-xs font-label uppercase bg-surface-container-low text-secondary-dim rounded hover:bg-surface-container-highest transition-colors">XS</button>
+<button class="py-2 text-xs font-label uppercase bg-primary text-on-primary rounded">S</button>
+<button class="py-2 text-xs font-label uppercase bg-surface-container-low text-secondary-dim rounded hover:bg-surface-container-highest transition-colors">M</button>
+<button class="py-2 text-xs font-label uppercase bg-surface-container-low text-secondary-dim rounded hover:bg-surface-container-highest transition-colors">L</button>
+<button class="py-2 text-xs font-label uppercase bg-surface-container-low text-secondary-dim rounded hover:bg-surface-container-highest transition-colors">XL</button>
+</div>
+</section>
+</div>
+</aside>
+<!-- Product Grid -->
+<div class="flex-1">
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
+<!-- Product Card 1 -->
+<div class="group relative flex flex-col">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-low">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="studio shot of a minimalist techwear jacket in obsidian black with architectural panels and soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV4vJKpku7thBRbVBK7kSUd-Grah-KSjl5ZbncI93TiwSKne4P86W5hl_1-Y0eG7ZIdUOGKfvpzQSxxch8bmzWuWrwVa52KRvC9UdxOPwwf5P4qYDj1qLbaGF3ALOeJq2HMjbvozknmdDP7G25VYHcn0u8Be0MZzxdv4d88bF8GhOuJM3W30p73Fs4aJKpMt-CZVRRyFTkE-zDbgu_i4riKkTw7M4oaJIokgxDtORgRoD1IHfQjGWk5mx8kcS7ukMwvcQ2J78ZKuw"/>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500"></div>
+<!-- Floating Action -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+<button class="bg-surface-container-lowest text-on-surface px-6 py-3 rounded-full text-sm font-label font-bold tracking-widest shadow-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="visibility">visibility</span>
+                                    QUICK VIEW
+                                </button>
+</div>
+<span class="absolute top-4 left-4 bg-primary text-on-primary text-[10px] font-label font-black tracking-widest px-3 py-1 rounded-full">NEW</span>
+</div>
+<div class="mt-6 flex justify-between items-start">
+<div>
+<h3 class="font-headline text-lg font-bold tracking-tight text-on-surface">Vector Shell Jacket</h3>
+<p class="text-sm text-secondary-dim font-body mt-1">Gore-Tex Infinite / Obsidian</p>
+</div>
+<span class="font-headline text-lg font-medium text-primary">$850</span>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group relative flex flex-col">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-low">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="editorial fashion shot of a light grey oversized knit sweater draped on a minimal concrete pedestal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNHKToXbe7JdjbR0am49MGV6KqX53123M_DKhNlUBKQhIF5fCv0gyXJv3Dmy-9WLoNw-qFTeSGalZjdLEsoWwRwviD7yq5vrxEmNEczgXQtcSRGMgZN6-phZvR25P0eqBc-_gKjHPxLlbmeAGjhbH8FzloPeDTn3xk3ci2kqMqPczE-n1BLddtNomCSAub9Ua80fyC3tn2-3GrMjZkSNoT3ofCDpDNn5s8hNzDpvC3UuJMa180L5ctGp4H690uGZcKi7sdTZeUVAE"/>
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+<button class="bg-surface-container-lowest text-on-surface px-6 py-3 rounded-full text-sm font-label font-bold tracking-widest shadow-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+                                    ADD TO BAG
+                                </button>
+</div>
+</div>
+<div class="mt-6 flex justify-between items-start">
+<div>
+<h3 class="font-headline text-lg font-bold tracking-tight text-on-surface">Structural Knit</h3>
+<p class="text-sm text-secondary-dim font-body mt-1">Merino Wool / Concrete</p>
+</div>
+<span class="font-headline text-lg font-medium text-on-surface">$420</span>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group relative flex flex-col">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-low">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="close up of premium white cotton t-shirt with clean stitching and high-quality texture against a soft beige background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPdEyUmjfWX8znKMR3E2cpD1Mm3Xxoekxhuk3pHzAD7pyZWXt80y_djrT-A33nabdIv2ylrUT17Qi34yaKKcwSl1zqJ2e8ecOkT5GukxQzJypx9bo3jx2AO8dCuf26RWozAw-lz1NObljXmRx6gjG-gg1PDzUbMD2WXWrlO-kQLW1kxye_MEQGBED-KxS3KgAk1hGENXqtVv4MP2b1SXWy28_-iHBq9ol1l9asQrl71UPgCyS77-cwvnxCIl7Fw63mKP4jcugqgZg"/>
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+<button class="bg-surface-container-lowest text-on-surface px-6 py-3 rounded-full text-sm font-label font-bold tracking-widest shadow-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="visibility">visibility</span>
+                                    QUICK VIEW
+                                </button>
+</div>
+</div>
+<div class="mt-6 flex justify-between items-start">
+<div>
+<h3 class="font-headline text-lg font-bold tracking-tight text-on-surface">Studio Tee</h3>
+<p class="text-sm text-secondary-dim font-body mt-1">Heavy Cotton / Bone</p>
+</div>
+<span class="font-headline text-lg font-medium text-on-surface">$120</span>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group relative flex flex-col">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-low">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="dynamic shot of a bright blue performance sneaker against a minimalist dark studio background with subtle reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5fWvck-nEcX6YtN2h1aNEDITtFBe9sx8VjgfTTNvp9d1_dYuAL8JAM9PwsWeAzhmhcjgWVTLrVar4Ka5cThlRmkIlaWKYYdfY2W_WfWOPPTC73MSUJZQnZgdRJIBRi-JJ0nNWd1Gq_v2Uou9gdeYnHquqKjKD79J-VL-eFSC3vpLRnW-HPiHMQGkdlqiow58LwETa3SUpx1D1-jF5VHQ43Y6f619qKzR0l_EyRoPc3vLkDsmwnYDcqHp2aZtDNhUqVvXTuI_RjJk"/>
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+<button class="bg-surface-container-lowest text-on-surface px-6 py-3 rounded-full text-sm font-label font-bold tracking-widest shadow-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="shopping_bag">shopping_bag</span>
+                                    SELECT SIZE
+                                </button>
+</div>
+</div>
+<div class="mt-6 flex justify-between items-start">
+<div>
+<h3 class="font-headline text-lg font-bold tracking-tight text-on-surface">Kinetic Runner 01</h3>
+<p class="text-sm text-secondary-dim font-body mt-1">Electric Blue / Mesh</p>
+</div>
+<span class="font-headline text-lg font-medium text-primary">$320</span>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="group relative flex flex-col">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-low">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="luxury dark grey wool trousers shown with a sharp crease on a minimalist marble background with cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZq5DeKvkJlC0EFwfMuOd5EJNThimRxmvx8TOthB9zdYEC0YVgZ6YvaaxFarpRZRR7aKYTelcxLwwWjecE9EIs3zlXkQYgQ1jnpRvKN4bpd5902dRJ7_JXiCe7TFpxCZNrH2AXIzIe8wXn1pqQ1DXSXlJt9OxW5yLtAy_fdJQqVttrj0BEeBRuC7ujrl6aGAJXwLeZZ3l8aqUv1CPsMl5a2CETiocMK_g4tJB1zbdOjWbl_Z5MmORSBhEOKDojWD57A1YlnDxE754"/>
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+<button class="bg-surface-container-lowest text-on-surface px-6 py-3 rounded-full text-sm font-label font-bold tracking-widest shadow-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="visibility">visibility</span>
+                                    QUICK VIEW
+                                </button>
+</div>
+</div>
+<div class="mt-6 flex justify-between items-start">
+<div>
+<h3 class="font-headline text-lg font-bold tracking-tight text-on-surface">Tapered Wool Pant</h3>
+<p class="text-sm text-secondary-dim font-body mt-1">Loro Piana Wool / Charcoal</p>
+</div>
+<span class="font-headline text-lg font-medium text-on-surface">$550</span>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="group relative flex flex-col">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-low">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="high-end minimalist leather backpack in matte black finish on a grey stone surface with soft ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA50CaTY3NASiUVyW0zav-Fs08PMZ-9XRGvDK-ASP28oippKexlbPXAeiXYhBRQTjGEZfe_DDlO078Qo_JPrknDYwdbstS_Thwk3ZuENU8zpN2zfhK6LXgYB38e-uEykqD58lD_idUv-52ScqzCZrGjA_9dl9Y8oeyVLHDrOQebixhEM2kMhY2SIzKk-LbDdyuQptCO3OJDN0TFsHvSpr7RKZr60NsXe3mhxHk7IHyrTTsXfTQlW65oueYUcxYEu6OVlJzKT-xFTp0"/>
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+<button class="bg-surface-container-lowest text-on-surface px-6 py-3 rounded-full text-sm font-label font-bold tracking-widest shadow-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+                                    ADD TO BAG
+                                </button>
+</div>
+<span class="absolute top-4 right-4 bg-zinc-900 text-white text-[10px] font-label font-black tracking-widest px-3 py-1 rounded-full uppercase">Sold Out</span>
+</div>
+<div class="mt-6 flex justify-between items-start opacity-60">
+<div>
+<h3 class="font-headline text-lg font-bold tracking-tight text-on-surface line-through">Nomad Pack</h3>
+<p class="text-sm text-secondary-dim font-body mt-1">Nappa Leather / Matte Black</p>
+</div>
+<span class="font-headline text-lg font-medium text-on-surface">$1,100</span>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-32 flex items-center justify-between border-t border-outline-variant/10 pt-12">
+<button class="flex items-center gap-2 group text-secondary-dim hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform" data-icon="arrow_back">arrow_back</span>
+<span class="font-label text-xs uppercase tracking-widest font-bold">Previous Page</span>
+</button>
+<div class="flex items-center gap-8">
+<span class="font-label text-xs font-bold text-primary">01</span>
+<span class="font-label text-xs font-bold text-secondary-dim hover:text-primary cursor-pointer">02</span>
+<span class="font-label text-xs font-bold text-secondary-dim hover:text-primary cursor-pointer">03</span>
+<span class="font-label text-xs font-bold text-secondary-dim">...</span>
+<span class="font-label text-xs font-bold text-secondary-dim hover:text-primary cursor-pointer">12</span>
+</div>
+<button class="flex items-center gap-2 group text-on-surface hover:text-primary transition-colors">
+<span class="font-label text-xs uppercase tracking-widest font-bold">Next Page</span>
+<span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full mt-20 bg-zinc-100 dark:bg-zinc-950">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-16 w-full">
+<div class="space-y-6">
+<div class="text-lg font-bold text-zinc-900 dark:text-zinc-50 font-headline uppercase tracking-tighter">KINETIC GALLERY</div>
+<p class="text-sm text-zinc-500 font-body leading-relaxed">
+                    Redefining the digital shopping experience through editorial precision and kinetic energy.
+                </p>
+</div>
+<div class="space-y-6">
+<h4 class="font-label text-sm uppercase tracking-widest text-zinc-900 font-bold">Explore</h4>
+<ul class="space-y-4">
+<li><a class="font-label text-sm uppercase tracking-widest text-zinc-500 hover:text-blue-600 transition-all" href="#">Collections</a></li>
+<li><a class="font-label text-sm uppercase tracking-widest text-zinc-500 hover:text-blue-600 transition-all" href="#">New Arrivals</a></li>
+<li><a class="font-label text-sm uppercase tracking-widest text-zinc-500 hover:text-blue-600 transition-all" href="#">Archive</a></li>
+<li><a class="font-label text-sm uppercase tracking-widest text-zinc-500 hover:text-blue-600 transition-all" href="#">Sustainability</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="font-label text-sm uppercase tracking-widest text-zinc-900 font-bold">Support</h4>
+<ul class="space-y-4">
+<li><a class="font-label text-sm uppercase tracking-widest text-zinc-500 hover:text-blue-600 transition-all" href="#">Shipping &amp; Returns</a></li>
+<li><a class="font-label text-sm uppercase tracking-widest text-zinc-500 hover:text-blue-600 transition-all" href="#">Contact</a></li>
+<li><a class="font-label text-sm uppercase tracking-widest text-zinc-500 hover:text-blue-600 transition-all" href="#">Privacy Policy</a></li>
+<li><a class="font-label text-sm uppercase tracking-widest text-zinc-500 hover:text-blue-600 transition-all" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="font-label text-sm uppercase tracking-widest text-zinc-900 font-bold">Journal</h4>
+<p class="text-xs text-zinc-500 font-body">Sign up for early access to curated drops and exclusive archive releases.</p>
+<div class="flex gap-2">
+<input class="bg-white border-none text-xs font-label p-3 flex-1 tracking-widest focus:ring-1 focus:ring-primary" placeholder="EMAIL ADDRESS" type="email"/>
+<button class="cta-gradient text-on-primary px-6 py-3 rounded-full text-xs font-label font-bold tracking-widest">JOIN</button>
+</div>
+</div>
+</div>
+<div class="px-12 py-8 border-t border-zinc-200/50 flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-label text-xs uppercase tracking-widest text-zinc-500">© 2024 KINETIC GALLERY. ALL RIGHTS RESERVED.</span>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-zinc-400 hover:text-blue-600 cursor-pointer" data-icon="share">share</span>
+<span class="material-symbols-outlined text-zinc-400 hover:text-blue-600 cursor-pointer" data-icon="language">language</span>
+</div>
+</div>
+</footer>
+</body></html>

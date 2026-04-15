@@ -1,0 +1,862 @@
+================================================================================
+     KINETIC GALLERY — E-COMMERCE WEBSITE — FULL IMPLEMENTATION PLAN
+================================================================================
+  Project: KINETIC GALLERY (High-End Editorial E-Commerce)
+  Date: April 15, 2026
+  Status: UI Screens Designed (Stitch) → Needs Full Functional Build
+================================================================================
+
+
+TABLE OF CONTENTS
+-----------------
+  1. Current State Analysis
+  2. Architecture & Technology Stack
+  3. Phase 1: Project Setup & Foundation
+  4. Phase 2: Shared Components & Layout
+  5. Phase 3: Product Data & State Management
+  6. Phase 4: Page-by-Page Implementation
+  7. Phase 5: Shopping Cart System
+  8. Phase 6: Checkout Flow
+  9. Phase 7: User Authentication
+  10. Phase 8: Search & Filtering
+  11. Phase 9: Missing Pages
+  12. Phase 10: Animations & Polish
+  13. Phase 11: Responsiveness & Mobile
+  14. Phase 12: Testing & Deployment
+  15. File Structure
+  16. Task Checklist
+
+
+================================================================================
+1. CURRENT STATE ANALYSIS
+================================================================================
+
+WHAT EXISTS:
+  - 4 standalone HTML pages generated via Stitch:
+    • homepage/code.html       (20 KB) — Hero, New Arrivals, Collections, Staff Picks
+    • product_listing/code.html (25 KB) — Filters sidebar, 6 product cards, pagination
+    • product_detail/code.html  (21 KB) — Image gallery, specs, reviews, related items
+    • checkout/code.html        (17 KB) — Shipping form, order summary sidebar
+  - Design system document (lumina_edge/DESIGN.md)
+  - All pages use Tailwind CSS via CDN with shared custom color/font config
+  - Product images hosted on Google (lh3.googleusercontent.com)
+
+WHAT IS BROKEN / MISSING:
+  ✗ No unified web application framework (pages are isolated HTML files)
+  ✗ All navigation links point to "#" (no routing)
+  ✗ Zero JavaScript logic (no interactivity at all)
+  ✗ No shopping cart system (add to cart, remove, quantity, persistence)
+  ✗ No product data layer (everything is hardcoded in HTML)
+  ✗ Search bar is non-functional
+  ✗ Sidebar filters (category, color, price, size) do nothing
+  ✗ Checkout only shows Step 1 (Shipping) — no Payment or Review steps
+  ✗ No form validation anywhere
+  ✗ No user authentication (login/register/account)
+  ✗ Missing pages: Cart, Wishlist, Order Confirmation, Account, 404
+  ✗ Mobile hamburger menu not implemented
+  ✗ Dark mode toggle missing (classes exist but no switch)
+  ✗ No newsletter signup functionality
+  ✗ Product "Quick View" buttons are non-functional
+  ✗ No image zoom/lightbox on product detail page
+  ✗ "Write Review" button is non-functional
+  ✗ Pagination is static/non-functional
+
+
+================================================================================
+2. ARCHITECTURE & TECHNOLOGY STACK
+================================================================================
+
+RECOMMENDED STACK:
+  ┌────────────────────────────────────────────────────────┐
+  │ Framework:    Vite + Vanilla JS (single-page app)      │
+  │ Styling:      Tailwind CSS (matching existing config)   │
+  │ Routing:      Custom hash-based router (lightweight)    │
+  │ State:        Vanilla JS Store (localStorage-backed)    │
+  │ Build Tool:   Vite                                      │
+  │ Deployment:   Static hosting (Netlify/Vercel/GitHub)    │
+  └────────────────────────────────────────────────────────┘
+
+WHY THIS STACK:
+  - The existing pages are pure HTML+Tailwind — no React/Vue overhead needed
+  - Vite gives us fast dev server, module bundling, and HMR
+  - localStorage for cart/wishlist persistence (no backend required for MVP)
+  - Hash-based routing keeps it simple for static hosting
+
+ALTERNATIVE (if user wants backend):
+  - Next.js + API routes + PostgreSQL/Supabase
+  - Would enable real auth, real payments (Stripe), real order management
+
+
+================================================================================
+3. PHASE 1: PROJECT SETUP & FOUNDATION
+================================================================================
+
+TASKS:
+  [1.1] Initialize Vite project in the workspace root
+        Command: npx -y create-vite@latest ./ --template vanilla
+  
+  [1.2] Install Tailwind CSS
+        Command: npm install -D tailwindcss @tailwindcss/forms postcss autoprefixer
+  
+  [1.3] Configure tailwind.config.js with the existing design system tokens:
+        - All custom colors (primary, surface hierarchy, etc.)
+        - Custom border-radius scale
+        - Custom font families (Plus Jakarta Sans, Manrope)
+  
+  [1.4] Create base CSS file (src/index.css) with:
+        - Tailwind directives (@tailwind base/components/utilities)
+        - Glass navigation styles
+        - Primary gradient utility
+        - Editorial shadow utility
+        - Ghost border utility
+        - Material Symbols configuration
+        - Custom scrollbar hiding
+        - Staggered entry animation keyframes
+  
+  [1.5] Set up Google Fonts loading in index.html:
+        - Plus Jakarta Sans (400, 500, 600, 700, 800)
+        - Manrope (400, 500, 600, 700)
+        - Material Symbols Outlined
+  
+  [1.6] Create folder structure (see Section 15)
+
+
+================================================================================
+4. PHASE 2: SHARED COMPONENTS & LAYOUT
+================================================================================
+
+TASKS:
+  [2.1] Create App Shell (src/App.js)
+        - Mount point for router
+        - Global event listeners
+        - Initialize stores
+
+  [2.2] Create Router (src/router.js)
+        - Hash-based routing (#/home, #/shop, #/product/:id, etc.)
+        - Route definitions with lazy-loading
+        - Navigation guards (e.g., checkout requires cart items)
+        - 404 fallback
+
+  [2.3] Create Navigation Component (src/components/Navbar.js)
+        - Glassmorphic fixed top nav (from existing design)
+        - Logo → links to homepage
+        - Navigation links: New Arrivals, Collections, Curated, Archive
+        - Active state highlighting (blue + bottom border)
+        - Search bar (desktop only) → triggers search overlay
+        - Shopping bag icon with cart count badge
+        - User/account icon
+        - Mobile hamburger menu (slide-in drawer)
+        - Cart count badge updates reactively
+
+  [2.4] Create Footer Component (src/components/Footer.js)
+        - Consistent footer across all pages
+        - Working navigation links
+        - Newsletter email signup form
+        - Social media links
+        - Copyright with dynamic year
+
+  [2.5] Create Reusable UI Components:
+        a) ProductCard (src/components/ProductCard.js)
+           - Image with hover zoom (scale 1.1)
+           - Quick View / Add to Bag floating action button
+           - Product name, category, price
+           - "NEW" and "Sold Out" badges
+           - Click navigates to product detail
+        
+        b) Button (src/components/Button.js)
+           - Variants: primary (gradient), secondary (filled), ghost (underline)
+           - Loading state with spinner
+           - Disabled state
+        
+        c) FilterChip (src/components/FilterChip.js)
+           - Secondary container style, primary when selected
+        
+        d) Toast/Notification (src/components/Toast.js)
+           - "Added to cart" confirmation
+           - Slides in from top-right, auto-dismisses
+        
+        e) Modal (src/components/Modal.js)
+           - For Quick View, image zoom, confirmations
+           - Backdrop blur, smooth entry animation
+        
+        f) Drawer (src/components/Drawer.js)
+           - Slide-in panel for mobile menu and mini-cart
+
+
+================================================================================
+5. PHASE 3: PRODUCT DATA & STATE MANAGEMENT
+================================================================================
+
+TASKS:
+  [3.1] Create Product Data Store (src/data/products.js)
+        - Array of product objects with fields:
+          {
+            id, name, slug, category, subcategory,
+            price, originalPrice (if on sale),
+            description, shortDescription,
+            images: [{ url, alt }],
+            colors: [{ name, hex, available }],
+            sizes: [{ label, available }],
+            finish/variant options,
+            badge: "NEW" | "SOLD_OUT" | null,
+            rating, reviewCount,
+            specs: { key: value },
+            relatedProductIds: [],
+            featured, curated, newArrival
+          }
+        
+        PRODUCTS TO INCLUDE (from existing pages):
+          1.  KINETIC PULSE R1 — Performance Footwear — $240
+          2.  CHRONOS TECH 02 — Precision Accessories — $380
+          3.  SONIC SHIELD V1 — Audio Engineering — $310
+          4.  CARGO MODULE XL — Utility Carry — $450
+          5.  Vector Shell Jacket — Gore-Tex / Obsidian — $850
+          6.  Structural Knit — Merino Wool / Concrete — $420
+          7.  Studio Tee — Heavy Cotton / Bone — $120
+          8.  Kinetic Runner 01 — Electric Blue / Mesh — $320
+          9.  Tapered Wool Pant — Loro Piana Wool — $550
+          10. Nomad Pack — Nappa Leather (Sold Out) — $1,100
+          11. KNT-01 Chrono White Silk — Limited Edition — $2,450
+          12. Orbital Strap System — $180
+          13. KNT-02 Nocturnal — $2,850
+          14. Maintenance Kit Pro — $420
+          15. Executive Travel Roll — $350
+          16. THE VELOCITY FRAME RUNNER — $295
+          + Add 8-12 more products for a fuller catalog
+
+  [3.2] Create Cart Store (src/stores/cartStore.js)
+        - State: items[], each with { productId, quantity, selectedSize, selectedColor }
+        - Methods: addItem, removeItem, updateQuantity, clearCart
+        - Computed: totalItems, subtotal, tax, shipping, total
+        - Persistence: save to localStorage on every change
+        - Event emitter for reactive UI updates
+
+  [3.3] Create Wishlist Store (src/stores/wishlistStore.js)
+        - State: productIds[]
+        - Methods: toggle, add, remove, isWishlisted
+        - Persistence: localStorage
+
+  [3.4] Create User Store (src/stores/userStore.js)
+        - State: { isLoggedIn, name, email, addresses[] }
+        - Methods: login (mock), logout, updateProfile
+        - Persistence: localStorage
+
+  [3.5] Create Review Data (src/data/reviews.js)
+        - Array of review objects per product
+        - { id, productId, author, rating, date, text, verified }
+
+  [3.6] Create Collection/Category Data (src/data/collections.js)
+        - THE NEON NOMAD, CYBER PASTEL, MONO-LITH collections
+        - Category definitions: Outerwear, Tops, Bottoms, Accessories, Footwear
+
+
+================================================================================
+6. PHASE 4: PAGE-BY-PAGE IMPLEMENTATION
+================================================================================
+
+--- 6A. HOMEPAGE (src/pages/Home.js) ---
+  [4.1] Hero Section
+        - Full-viewport background image with grayscale filter
+        - Season label with glassmorphic pill
+        - "FUTURE UNFOLDING." headline with animated entry
+        - Two CTAs: "Explore Collection" → #/shop, "Watch Film" → modal video
+        - Parallax scroll effect on background image
+
+  [4.2] New Arrivals Section
+        - Dynamically render from products data (filter: newArrival === true)
+        - 4 product cards in staggered grid (cards 2 and 4 offset with mt-12)
+        - "View All Drops" link → #/shop?filter=new
+        - Each card click → #/product/:id
+
+  [4.3] Trending Collections Bento Grid
+        - 3 collection tiles in asymmetric grid
+        - Hover reveals overlay with collection name + description
+        - Large tile: "THE NEON NOMAD" with "Shop Collection" CTA → #/shop?collection=neon-nomad
+        - Click navigates to filtered product listing
+
+  [4.4] Curated Staff Picks Section
+        - Featured product with large circular image
+        - "Editor's Choice" badge
+        - Colorway swatches (interactive — change hero image on click)
+        - "Add to Bag — $295.00" button (functional cart add)
+
+--- 6B. PRODUCT LISTING (src/pages/Shop.js) ---
+  [4.5] Page Header
+        - "COLLECTIONS 2024" headline
+        - Dynamic item count based on filtered results
+
+  [4.6] Sidebar Filters (functional)
+        - Category checkboxes → filter products by category
+        - Color palette buttons → filter by color
+        - Price range slider → filter by price range (real-time update)
+        - Size buttons → filter by available sizes
+        - "Clear All" button to reset filters
+        - URL query params sync (?category=tops&size=S&maxPrice=500)
+
+  [4.7] Product Grid
+        - Render from filtered product data
+        - 3-column grid on desktop, 2 on tablet, 1 on mobile
+        - Quick View button → opens modal with product preview
+        - Add to Bag button → adds to cart with toast notification
+        - Select Size button → opens size selector then adds to cart
+        - Sold Out badge disables add-to-cart
+
+  [4.8] Pagination
+        - 12 items per page
+        - Previous/Next buttons with arrow animations
+        - Page numbers (calculated from total items)
+        - Smooth scroll to top on page change
+
+--- 6C. PRODUCT DETAIL (src/pages/ProductDetail.js) ---
+  [4.9] Breadcrumbs
+        - Dynamic based on product category
+        - Each level is a working link
+
+  [4.10] Image Gallery
+        - Main hero image (large, 4:5 aspect ratio)
+        - 2 thumbnail images below
+        - Click thumbnail → swap main image (smooth crossfade)
+        - Click main image → full-screen lightbox/zoom modal
+        - Cursor changes to zoom-in icon on hover
+
+  [4.11] Product Info Panel (sticky sidebar)
+        - Badge (Limited Edition, NEW, etc.)
+        - Product name and price
+        - Description text
+        - Finish/Color selection chips (functional — updates images)
+        - Size selection (if applicable)
+        - Quantity selector (+/- buttons)
+        - "Add to Collection" button → adds to cart
+        - "Reserve Now" button → adds to wishlist
+        - Benefits list (shipping, warranty icons)
+
+  [4.12] Technical Specifications Section
+        - Tonal layered background (surface-container-low)
+        - Spec grid with labels and values
+        - Detail image
+
+  [4.13] Reviews Section
+        - Star rating display (average + count)
+        - "Write Review" button → opens review form modal
+        - Review cards in 3-column bento layout
+        - Reviewer name, verified badge, date, review text
+        - Load more reviews button
+
+  [4.14] Related Products ("Curated for You")
+        - 4 product cards from relatedProductIds
+        - Staggered layout (cards 2 and 4 offset)
+        - Each card navigates to its product detail
+
+--- 6D. CHECKOUT (src/pages/Checkout.js) ---
+  (See Phase 6 below for full details)
+
+
+================================================================================
+7. PHASE 5: SHOPPING CART SYSTEM
+================================================================================
+
+TASKS:
+  [5.1] Cart Mini-Drawer (src/components/CartDrawer.js)
+        - Slides in from right when cart icon clicked
+        - Shows all cart items with:
+          • Product thumbnail
+          • Name, variant (color/size)
+          • Quantity controls (+/-)
+          • Remove button (x)
+          • Line item price
+        - Subtotal at bottom
+        - "View Full Cart" button → #/cart
+        - "Checkout" button → #/checkout
+        - Empty cart state with "Continue Shopping" CTA
+
+  [5.2] Full Cart Page (src/pages/Cart.js)
+        - Full-width cart table/list
+        - Each item: image, name, variant, unit price, quantity selector, line total
+        - Remove item button with confirmation
+        - "Update Cart" functionality
+        - Cart summary sidebar:
+          • Subtotal
+          • Shipping estimate
+          • Tax estimate
+          • Promo code input + Apply button
+          • Order total
+        - "Continue Shopping" link
+        - "Proceed to Checkout" CTA button
+
+  [5.3] Add-to-Cart Flow
+        - When user clicks "Add to Bag":
+          1. If product has size options → show size selector first
+          2. Add item to cart store
+          3. Show toast notification ("KINETIC PULSE R1 added to your bag")
+          4. Update cart count badge in navbar (with scale animation)
+          5. Briefly highlight the cart icon
+        - If item already in cart → increment quantity
+
+  [5.4] Cart Persistence
+        - Auto-save cart to localStorage on every change
+        - Restore cart from localStorage on page load
+        - Handle edge cases (product removed from catalog, etc.)
+
+
+================================================================================
+8. PHASE 6: CHECKOUT FLOW
+================================================================================
+
+TASKS:
+  [6.1] Multi-Step Checkout Architecture
+        - 3 steps: Shipping → Payment → Review
+        - Progress stepper at top (01, 02, 03)
+        - Active step highlighted in primary color
+        - Back/Continue navigation between steps
+        - Cart must have items (redirect to cart if empty)
+
+  [6.2] Step 1: Shipping Information (already designed)
+        - Form fields: First Name, Last Name, Street Address, City, State, ZIP
+        - Form validation:
+          • Required field indicators
+          • Real-time validation on blur
+          • Error states (red bottom-bar, error text)
+        - Delivery method selection (Standard Free / Express $25)
+        - "Continue to Payment" button
+        - "Back to Cart" link
+
+  [6.3] Step 2: Payment Information (NEW — needs design)
+        - Card number input (with formatting: XXXX XXXX XXXX XXXX)
+        - Expiration date (MM/YY)
+        - CVV (masked)
+        - Cardholder name
+        - Billing address toggle ("Same as shipping" checkbox)
+        - Payment method icons (Visa, Mastercard, Amex)
+        - Form validation for card fields
+        - "Continue to Review" button
+        - "Back to Shipping" link
+
+  [6.4] Step 3: Order Review (NEW — needs design)
+        - Summary of shipping address
+        - Summary of payment method (last 4 digits)
+        - Summary of delivery method
+        - Full item list with thumbnails
+        - Price breakdown (subtotal, shipping, tax, total)
+        - Edit links for each section (go back to respective step)
+        - "Place Order" CTA button (gradient, prominent)
+        - Terms & conditions checkbox
+
+  [6.5] Order Confirmation Page (src/pages/OrderConfirmation.js)
+        - Success animation (checkmark)
+        - Order number (generated)
+        - Summary of what was ordered
+        - Estimated delivery date
+        - "Continue Shopping" CTA
+        - Clear cart on successful order
+
+  [6.6] Order Summary Sidebar (persists across all steps)
+        - Shows cart items with thumbnails
+        - Updates shipping cost based on method selected
+        - Live total calculation
+        - Promo code functionality
+
+
+================================================================================
+9. PHASE 7: USER AUTHENTICATION (MOCK)
+================================================================================
+
+TASKS:
+  [7.1] Login Page (src/pages/Login.js)
+        - Email + password fields
+        - "Sign In" CTA button
+        - "Forgot Password?" link
+        - "Create Account" link
+        - Mock authentication (store in localStorage)
+        - Redirect to previous page after login
+
+  [7.2] Register Page (src/pages/Register.js)
+        - First name, last name, email, password, confirm password
+        - Form validation
+        - "Create Account" CTA
+        - "Already have an account? Sign In" link
+
+  [7.3] Account Page (src/pages/Account.js)
+        - User profile info (editable)
+        - Saved addresses
+        - Order history (mock data)
+        - Wishlist items
+        - "Sign Out" button
+
+  [7.4] Auth State Integration
+        - Navbar shows "Sign In" or user name/avatar
+        - Checkout pre-fills address if logged in
+        - Wishlist syncs across sessions
+
+
+================================================================================
+10. PHASE 8: SEARCH & FILTERING
+================================================================================
+
+TASKS:
+  [8.1] Search Overlay (src/components/SearchOverlay.js)
+        - Full-screen overlay with glassmorphic background
+        - Large search input with auto-focus
+        - Real-time search-as-you-type
+        - Search across: product names, categories, descriptions
+        - Results appear below input as cards
+        - Recent searches (stored in localStorage)
+        - "No results" state with suggestions
+        - ESC key or click outside to close
+
+  [8.2] Product Listing Filters (functional)
+        - Category filter: checkbox-based, multiple selection
+        - Color filter: color swatch buttons, single/multi select
+        - Price filter: range slider with min/max display
+        - Size filter: button grid, highlights selected
+        - Active filters shown as removable chips above grid
+        - Product count updates dynamically
+        - URL query parameters for shareable filtered URLs
+
+  [8.3] Sort Functionality
+        - Sort dropdown: Price Low→High, Price High→Low, Newest, Name A-Z
+        - Default sort: Featured/Curated
+
+
+================================================================================
+11. PHASE 9: MISSING PAGES
+================================================================================
+
+TASKS:
+  [9.1] Wishlist Page (src/pages/Wishlist.js)
+        - Grid of wishlisted products
+        - "Add to Cart" button on each item
+        - "Remove" button
+        - Empty state: "Your wishlist is empty"
+        - Share wishlist link
+
+  [9.2] 404 Not Found Page (src/pages/NotFound.js)
+        - On-brand "404" display
+        - "The page you're looking for has been archived."
+        - "Return to Gallery" CTA
+
+  [9.3] About / Sustainability Page (src/pages/About.js)
+        - Brand story section
+        - Sustainability commitment
+        - Editorial imagery
+
+  [9.4] Contact Page (src/pages/Contact.js)
+        - Contact form (name, email, subject, message)
+        - Store locations (if applicable)
+        - Support hours
+
+  [9.5] FAQ Page (src/pages/FAQ.js)
+        - Accordion-style questions
+        - Categories: Shipping, Returns, Orders, Products
+        - Search within FAQ
+
+  [9.6] Shipping & Returns Policy Page
+  [9.7] Privacy Policy Page
+  [9.8] Terms of Service Page
+
+
+================================================================================
+12. PHASE 10: ANIMATIONS & POLISH
+================================================================================
+
+TASKS:
+  [10.1] Page Transition Animation
+         - "Surface Slide" effect (new page slides over previous)
+         - Smooth fade-in for content sections
+
+  [10.2] Scroll-Triggered Animations
+         - Staggered entry for product cards (fade + slide up)
+         - Intersection Observer for lazy animation triggers
+         - Easing: cubic-bezier(0.22, 1, 0.36, 1)
+
+  [10.3] Micro-Interactions
+         - CTA button gradient angle shift on hover
+         - Cart icon bounce when item added
+         - Product card image scale on hover (already exists in CSS)
+         - Tooltip on color swatches
+         - Quantity button press feedback
+         - Form input focus animations
+
+  [10.4] Image Lazy Loading
+         - Intersection Observer-based lazy loading
+         - Low-quality placeholder blur-up effect
+         - Skeleton loading states for product cards
+
+  [10.5] Dark Mode
+         - Toggle switch in navbar or footer
+         - Persist preference in localStorage
+         - Smooth transition between modes
+         - All design tokens need dark variants
+
+
+================================================================================
+13. PHASE 11: RESPONSIVENESS & MOBILE
+================================================================================
+
+TASKS:
+  [11.1] Mobile Navigation
+         - Hamburger icon (three lines) replaces nav links on mobile
+         - Slide-in drawer from right with full navigation
+         - Close button and backdrop overlay
+         - Search shortcut in mobile menu
+
+  [11.2] Responsive Breakpoints
+         - Mobile: < 768px (1 column layouts)
+         - Tablet: 768px - 1024px (2 column grids)
+         - Desktop: > 1024px (full layouts as designed)
+
+  [11.3] Touch Optimization
+         - Larger tap targets (min 44px) for mobile
+         - Swipe gestures for product image gallery
+         - Pull-to-refresh (optional)
+
+  [11.4] Page-Specific Mobile Adjustments
+         - Homepage hero: reduce text size, stack CTAs vertically
+         - Product listing: filters collapse into a bottom sheet / modal
+         - Product detail: image gallery becomes horizontal scroll
+         - Checkout: single-column, full-width inputs
+         - Cart: simplified item layout
+
+
+================================================================================
+14. PHASE 12: TESTING & DEPLOYMENT
+================================================================================
+
+TASKS:
+  [12.1] Cross-Browser Testing
+         - Chrome, Firefox, Safari, Edge
+         - Verify glassmorphism (backdrop-filter) support
+
+  [12.2] Performance Optimization
+         - Image optimization (WebP format, responsive sizes)
+         - Code splitting for route-based lazy loading
+         - Minimize CSS (purge unused Tailwind classes)
+         - Lighthouse score target: 90+ on all categories
+
+  [12.3] Accessibility Audit
+         - ARIA labels on interactive elements
+         - Keyboard navigation (tab order, focus indicators)
+         - Screen reader testing
+         - Color contrast verification
+         - Skip-to-content link
+
+  [12.4] SEO
+         - Unique <title> tags per page
+         - Meta descriptions
+         - Open Graph tags for social sharing
+         - Semantic HTML structure
+         - Structured data (JSON-LD for products)
+
+  [12.5] Deployment
+         - Build: npm run build
+         - Deploy to Netlify/Vercel/GitHub Pages
+         - Custom domain setup (optional)
+         - HTTPS enforcement
+
+
+================================================================================
+15. FILE STRUCTURE
+================================================================================
+
+d:\Projects\ecommerce website\
+├── index.html
+├── package.json
+├── vite.config.js
+├── tailwind.config.js
+├── postcss.config.js
+├── implementation_plan.txt          ← (this file)
+│
+├── public/
+│   ├── favicon.ico
+│   └── images/                     (local product images if needed)
+│
+├── src/
+│   ├── main.js                     (app entry point)
+│   ├── index.css                   (Tailwind + custom styles)
+│   ├── router.js                   (hash-based routing)
+│   │
+│   ├── components/
+│   │   ├── Navbar.js
+│   │   ├── Footer.js
+│   │   ├── ProductCard.js
+│   │   ├── Button.js
+│   │   ├── FilterChip.js
+│   │   ├── Toast.js
+│   │   ├── Modal.js
+│   │   ├── Drawer.js
+│   │   ├── CartDrawer.js
+│   │   ├── SearchOverlay.js
+│   │   ├── ReviewCard.js
+│   │   ├── StarRating.js
+│   │   └── QuantitySelector.js
+│   │
+│   ├── pages/
+│   │   ├── Home.js
+│   │   ├── Shop.js
+│   │   ├── ProductDetail.js
+│   │   ├── Cart.js
+│   │   ├── Checkout.js
+│   │   ├── OrderConfirmation.js
+│   │   ├── Login.js
+│   │   ├── Register.js
+│   │   ├── Account.js
+│   │   ├── Wishlist.js
+│   │   ├── About.js
+│   │   ├── Contact.js
+│   │   ├── FAQ.js
+│   │   └── NotFound.js
+│   │
+│   ├── stores/
+│   │   ├── cartStore.js
+│   │   ├── wishlistStore.js
+│   │   ├── userStore.js
+│   │   └── filterStore.js
+│   │
+│   ├── data/
+│   │   ├── products.js
+│   │   ├── collections.js
+│   │   └── reviews.js
+│   │
+│   └── utils/
+│       ├── formatPrice.js
+│       ├── eventBus.js
+│       ├── validators.js
+│       └── animations.js
+│
+└── stitch_modern_dynamic_commerce/  (original Stitch output — reference only)
+    └── ...
+
+
+================================================================================
+16. TASK CHECKLIST (EXECUTION ORDER)
+================================================================================
+
+PHASE 1 — PROJECT SETUP (Estimated: 1 hour)
+  [ ] 1.1  Initialize Vite project
+  [ ] 1.2  Install & configure Tailwind CSS
+  [ ] 1.3  Set up design system tokens in tailwind.config.js
+  [ ] 1.4  Create base stylesheet (index.css)
+  [ ] 1.5  Set up Google Fonts
+  [ ] 1.6  Create folder structure
+
+PHASE 2 — SHARED COMPONENTS (Estimated: 3–4 hours)
+  [ ] 2.1  App Shell + Router
+  [ ] 2.2  Navbar component (with mobile hamburger)
+  [ ] 2.3  Footer component
+  [ ] 2.4  ProductCard component
+  [ ] 2.5  Button, FilterChip, Toast, Modal, Drawer components
+
+PHASE 3 — DATA & STATE (Estimated: 2 hours)
+  [ ] 3.1  Product data catalog (16+ products)
+  [ ] 3.2  Cart store with localStorage
+  [ ] 3.3  Wishlist store
+  [ ] 3.4  User store
+  [ ] 3.5  Review data
+  [ ] 3.6  Collection/category data
+
+PHASE 4 — CORE PAGES (Estimated: 6–8 hours)
+  [ ] 4.1  Homepage — Hero section
+  [ ] 4.2  Homepage — New Arrivals grid
+  [ ] 4.3  Homepage — Trending Collections bento
+  [ ] 4.4  Homepage — Curated Staff Picks
+  [ ] 4.5  Product Listing — Header + item count
+  [ ] 4.6  Product Listing — Functional filters
+  [ ] 4.7  Product Listing — Product grid
+  [ ] 4.8  Product Listing — Pagination
+  [ ] 4.9  Product Detail — Breadcrumbs
+  [ ] 4.10 Product Detail — Image gallery + zoom
+  [ ] 4.11 Product Detail — Product info + add to cart
+  [ ] 4.12 Product Detail — Specifications
+  [ ] 4.13 Product Detail — Reviews
+  [ ] 4.14 Product Detail — Related products
+
+PHASE 5 — CART SYSTEM (Estimated: 3 hours)
+  [ ] 5.1  Cart mini-drawer
+  [ ] 5.2  Full cart page
+  [ ] 5.3  Add-to-cart flow with notifications
+  [ ] 5.4  Cart persistence
+
+PHASE 6 — CHECKOUT (Estimated: 4 hours)
+  [ ] 6.1  Multi-step architecture
+  [ ] 6.2  Step 1: Shipping (from existing design)
+  [ ] 6.3  Step 2: Payment (new design)
+  [ ] 6.4  Step 3: Review (new design)
+  [ ] 6.5  Order confirmation page
+  [ ] 6.6  Order summary sidebar
+
+PHASE 7 — AUTH (Estimated: 2 hours)
+  [ ] 7.1  Login page
+  [ ] 7.2  Register page
+  [ ] 7.3  Account page
+  [ ] 7.4  Auth state integration
+
+PHASE 8 — SEARCH & FILTER (Estimated: 2 hours)
+  [ ] 8.1  Search overlay
+  [ ] 8.2  Functional listing filters
+  [ ] 8.3  Sort functionality
+
+PHASE 9 — ADDITIONAL PAGES (Estimated: 3 hours)
+  [ ] 9.1  Wishlist page
+  [ ] 9.2  404 Not Found page
+  [ ] 9.3  About page
+  [ ] 9.4  Contact page
+  [ ] 9.5  FAQ page
+  [ ] 9.6  Policy pages
+
+PHASE 10 — POLISH (Estimated: 3 hours)
+  [ ] 10.1 Page transitions
+  [ ] 10.2 Scroll-triggered animations
+  [ ] 10.3 Micro-interactions
+  [ ] 10.4 Image lazy loading
+  [ ] 10.5 Dark mode toggle
+
+PHASE 11 — MOBILE (Estimated: 3 hours)
+  [ ] 11.1 Mobile navigation drawer
+  [ ] 11.2 Responsive breakpoint testing
+  [ ] 11.3 Touch optimization
+  [ ] 11.4 Page-specific mobile adjustments
+
+PHASE 12 — TESTING & DEPLOY (Estimated: 2 hours)
+  [ ] 12.1 Cross-browser testing
+  [ ] 12.2 Performance optimization
+  [ ] 12.3 Accessibility audit
+  [ ] 12.4 SEO implementation
+  [ ] 12.5 Production build and deployment
+
+────────────────────────────────────────────────────
+  TOTAL ESTIMATED TIME: 30–35 hours
+────────────────────────────────────────────────────
+
+
+================================================================================
+PRIORITY ORDER (MVP FIRST)
+================================================================================
+
+HIGH PRIORITY (Core functionality — must have):
+  → Project setup + routing
+  → Navbar + Footer
+  → Product data
+  → Homepage
+  → Product Listing (with basic filters)
+  → Product Detail (with add to cart)
+  → Cart system (drawer + full page)
+  → Checkout (all 3 steps)
+
+MEDIUM PRIORITY (Important for completeness):
+  → Search
+  → Advanced filtering & sorting
+  → Wishlist
+  → Mobile navigation
+  → Responsive layouts
+  → Animations
+
+LOW PRIORITY (Nice to have):
+  → User authentication
+  → Dark mode
+  → FAQ, About, Contact pages
+  → Review submission
+  → Policy pages
+
+
+================================================================================
+END OF IMPLEMENTATION PLAN
+================================================================================

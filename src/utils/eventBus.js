@@ -1,0 +1,25 @@
+class EventBus {
+  constructor() {
+    this.events = {};
+  }
+
+  on(event, callback) {
+    if (!this.events[event]) {
+      this.events[event] = [];
+    }
+    this.events[event].push(callback);
+  }
+
+  emit(event, data) {
+    if (this.events[event]) {
+      this.events[event].forEach(callback => callback(data));
+    }
+  }
+}
+
+export const eventBus = new EventBus();
+export const EVENTS = {
+  CART_UPDATED: 'CART_UPDATED',
+  SHOW_TOAST: 'SHOW_TOAST',
+  OPEN_CART: 'OPEN_CART',
+};

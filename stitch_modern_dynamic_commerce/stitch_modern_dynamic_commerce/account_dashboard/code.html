@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#f5f6f7",
+                        "outline": "#757778",
+                        "surface-container-highest": "#dadddf",
+                        "on-secondary-fixed-variant": "#5c5b5b",
+                        "on-primary-container": "#001867",
+                        "on-primary": "#f2f1ff",
+                        "secondary-fixed": "#e5e2e1",
+                        "on-tertiary-container": "#5f0656",
+                        "primary-fixed": "#859aff",
+                        "on-primary-fixed-variant": "#00207e",
+                        "surface-dim": "#d1d5d7",
+                        "on-surface": "#2c2f30",
+                        "surface-container-high": "#e0e3e4",
+                        "primary-container": "#859aff",
+                        "on-tertiary": "#ffeef6",
+                        "inverse-on-surface": "#9b9d9e",
+                        "surface-container": "#e6e8ea",
+                        "surface-tint": "#0846ed",
+                        "primary-dim": "#003cd3",
+                        "primary-fixed-dim": "#718bff",
+                        "surface-container-lowest": "#ffffff",
+                        "error-dim": "#a70138",
+                        "on-secondary-fixed": "#403f3f",
+                        "tertiary-fixed": "#f790e0",
+                        "tertiary-container": "#f790e0",
+                        "secondary-fixed-dim": "#d7d4d3",
+                        "on-background": "#2c2f30",
+                        "inverse-primary": "#6d88ff",
+                        "tertiary-fixed-dim": "#e883d2",
+                        "secondary-container": "#e5e2e1",
+                        "on-secondary": "#f5f2f1",
+                        "secondary-dim": "#504f4f",
+                        "tertiary-dim": "#832c76",
+                        "on-secondary-container": "#525151",
+                        "surface": "#f5f6f7",
+                        "primary": "#0846ed",
+                        "surface-container-low": "#eff1f2",
+                        "secondary": "#5c5b5b",
+                        "on-error": "#ffefef",
+                        "background": "#f5f6f7",
+                        "on-error-container": "#510017",
+                        "inverse-surface": "#0c0f10",
+                        "tertiary": "#913983",
+                        "outline-variant": "#abadae",
+                        "on-surface-variant": "#595c5d",
+                        "error-container": "#f74b6d",
+                        "surface-variant": "#dadddf",
+                        "on-tertiary-fixed-variant": "#6a1460",
+                        "on-primary-fixed": "#000000",
+                        "error": "#b41340",
+                        "on-tertiary-fixed": "#380033"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #f5f6f7; color: #2c2f30; }
+        .font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-nav { background: rgba(245, 246, 247, 0.7); backdrop-filter: blur(24px); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 sticky left-0 top-0 bg-slate-50 dark:bg-slate-950 flex flex-col gap-2 p-6 border-r border-slate-100 dark:border-slate-900 z-50">
+<div class="mb-10">
+<span class="text-lg font-bold text-slate-900 dark:text-white font-jakarta">KINETIC</span>
+</div>
+<div class="mb-8 px-2">
+<h2 class="text-slate-900 dark:text-white font-bold font-Jakarta">Welcome back</h2>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-['Manrope']">Verified Member</p>
+</div>
+<nav class="flex flex-col gap-2 flex-grow">
+<!-- Dashboard Active -->
+<a class="bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-sm rounded-xl flex items-center gap-3 px-4 py-3 hover:translate-x-1 transition-transform duration-200 font-['Manrope'] text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+                    Dashboard
+                </a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900/50 rounded-xl flex items-center gap-3 px-4 py-3 hover:translate-x-1 transition-transform duration-200 font-['Manrope'] text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="package_2">package_2</span>
+                    Order History
+                </a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900/50 rounded-xl flex items-center gap-3 px-4 py-3 hover:translate-x-1 transition-transform duration-200 font-['Manrope'] text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+                    Wishlist
+                </a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900/50 rounded-xl flex items-center gap-3 px-4 py-3 hover:translate-x-1 transition-transform duration-200 font-['Manrope'] text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+                    Payment Methods
+                </a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900/50 rounded-xl flex items-center gap-3 px-4 py-3 hover:translate-x-1 transition-transform duration-200 font-['Manrope'] text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Account Settings
+                </a>
+</nav>
+<div class="mt-auto pt-6 border-t border-slate-100 dark:border-slate-900">
+<button class="w-full py-3 px-4 text-left text-slate-500 hover:text-error transition-colors flex items-center gap-3 font-['Manrope'] text-sm">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                    Logout
+                </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 bg-surface min-h-screen overflow-y-auto">
+<!-- Top Header (No-Line Philosophy) -->
+<header class="w-full px-12 pt-12 pb-6 flex justify-between items-end">
+<div>
+<h1 class="text-4xl font-extrabold font-jakarta tracking-tight text-on-surface">Account Overview</h1>
+<p class="text-on-surface-variant mt-2 font-body">Manage your profile, orders, and kinetic preferences.</p>
+</div>
+<div class="flex gap-4">
+<button class="bg-surface-container-highest text-on-surface px-6 py-2.5 rounded-full font-label text-xs uppercase tracking-widest hover:opacity-80 transition-all active:scale-95">
+                        Support
+                    </button>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-2.5 rounded-full font-label text-xs uppercase tracking-widest hover:opacity-90 transition-all active:scale-95 shadow-lg shadow-primary/20">
+                        Shop Collection
+                    </button>
+</div>
+</header>
+<div class="px-12 py-8 grid grid-cols-12 gap-8">
+<!-- Bento Grid Section 1: Membership Stats -->
+<section class="col-span-12 lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_20px_40px_rgba(44,47,48,0.04)] flex flex-col justify-between min-h-[180px]">
+<span class="label-md uppercase tracking-widest text-[10px] text-on-surface-variant font-bold">Loyalty Tier</span>
+<div class="mt-4">
+<h3 class="text-3xl font-jakarta font-black text-primary">Platinum</h3>
+<p class="text-xs text-on-surface-variant mt-1">Next tier at 5,000 pts</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_20px_40px_rgba(44,47,48,0.04)] flex flex-col justify-between min-h-[180px]">
+<span class="label-md uppercase tracking-widest text-[10px] text-on-surface-variant font-bold">Kinetic Points</span>
+<div class="mt-4">
+<h3 class="text-3xl font-jakarta font-black text-on-surface">3,240</h3>
+<p class="text-xs text-on-surface-variant mt-1">Available for redemption</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_20px_40px_rgba(44,47,48,0.04)] flex flex-col justify-between min-h-[180px] bg-gradient-to-br from-surface-container-lowest to-surface-container-low">
+<span class="label-md uppercase tracking-widest text-[10px] text-on-surface-variant font-bold">Member Since</span>
+<div class="mt-4">
+<h3 class="text-3xl font-jakarta font-black text-on-surface">Oct '22</h3>
+<p class="text-xs text-on-surface-variant mt-1">2.4 years of kinetic energy</p>
+</div>
+</div>
+</section>
+<!-- Profile Card (Asymmetric) -->
+<aside class="col-span-12 lg:col-span-4 row-span-2">
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-[0_20px_40px_rgba(44,47,48,0.06)] sticky top-8">
+<div class="flex flex-col items-center text-center">
+<div class="relative mb-6">
+<img alt="Profile Avatar" class="w-32 h-32 rounded-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="portrait of a professional woman with minimalist aesthetic, soft natural lighting, editorial fashion style photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUJpehtc4vusuBKaTyFFCbnKxKZDRfdMogLiUSfx_u2GIsEwY6e2HhwUW6wFMMj-6IgFYJcIEHioyoF1Efb1k2SmCIdJzH-fl7bO3aJq4gF3CQhlNOuMHPt0GqOoz29oHEzf6WH_cG1sOaYfBqbu9dOJHkSHOo4bhM3LkEgy367nKY0_wRhqQCy6xWQ_1ByuUe4-jmOH1hQI8YJOF-eOGsUBsOkZw0RnQpgcTSntaY2hYzIk0sTwbRHGO43dBwRueWjb44J7Ne5HU"/>
+<div class="absolute bottom-1 right-1 w-8 h-8 bg-primary rounded-full flex items-center justify-center border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined text-white text-xs" data-icon="verified" style="font-size: 14px;">verified</span>
+</div>
+</div>
+<h2 class="text-2xl font-jakarta font-bold">Elena Vance</h2>
+<p class="text-on-surface-variant text-sm mt-1">elena.vance@kinetic.design</p>
+</div>
+<div class="mt-10 space-y-6">
+<div class="flex justify-between items-center">
+<span class="text-xs uppercase tracking-widest font-bold text-on-surface-variant">Default Shipping</span>
+<a class="text-[10px] text-primary font-bold uppercase tracking-widest" href="#">Edit</a>
+</div>
+<p class="text-sm leading-relaxed text-on-surface">
+                                4820 Lumina District, Floor 12<br/>
+                                San Francisco, CA 94105<br/>
+                                United States
+                            </p>
+<div class="pt-6 border-t border-surface-container flex flex-col gap-3">
+<button class="flex items-center justify-between w-full p-4 rounded-xl hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+<span class="text-sm font-medium">Notification Settings</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+<button class="flex items-center justify-between w-full p-4 rounded-xl hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="security">security</span>
+<span class="text-sm font-medium">Security &amp; Privacy</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+<!-- Recent Orders (Glassmorphic Elements) -->
+<section class="col-span-12 lg:col-span-8">
+<div class="flex justify-between items-end mb-6">
+<h2 class="text-2xl font-jakarta font-bold">Recent Shipments</h2>
+<a class="text-xs font-bold uppercase tracking-widest text-primary hover:underline underline-offset-4" href="#">View All Archive</a>
+</div>
+<div class="space-y-4">
+<!-- Order 1 -->
+<div class="bg-surface-container-low rounded-xl p-6 flex flex-col md:flex-row gap-6 items-center group transition-all">
+<div class="w-24 h-24 bg-surface-container-lowest rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="high-end electric blue sneakers on clean white background, minimalist product photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm3kB2X4BaEVvkrqxMxgp5BALkbWrCo9wHRQ7Hi4GZGoWdQ3IgkiyIrxEtIIML9IJ7Tpuqs7Kmq5x_0rdZWrqJQzsgHZ2GYvq4E-7qps-cshF1J0fqDywSCm6VccG-CheKUZ_AeAKVwLYlIIctu4h-EQ6r5mV24Ekme-HYZWInBEUq4hMV-eSL26eMGTIZRiUuIIK9Vje0D_NIVSmojUGUMlvU-fcQG1ibwqoZDt9rTD8SbsM5heu0s_WEVupn5dZsbyNE5dccNRA"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between">
+<span class="text-xs font-bold uppercase tracking-widest text-primary mb-1">In Transit</span>
+<span class="text-xs font-medium text-on-surface-variant">Est. April 14</span>
+</div>
+<h4 class="text-lg font-jakarta font-bold">Kinetic Zoom X-11 "Electric"</h4>
+<p class="text-xs text-on-surface-variant mt-1">Order #K-90283 • $240.00</p>
+</div>
+<div class="flex gap-2">
+<button class="bg-surface-container-highest text-on-surface px-5 py-2 rounded-full text-xs font-bold transition-all active:scale-95">Track</button>
+<button class="bg-on-surface text-surface px-5 py-2 rounded-full text-xs font-bold transition-all active:scale-95">Details</button>
+</div>
+</div>
+<!-- Order 2 -->
+<div class="bg-surface-container-low rounded-xl p-6 flex flex-col md:flex-row gap-6 items-center group transition-all">
+<div class="w-24 h-24 bg-surface-container-lowest rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="premium minimalist charcoal jacket flat lay on white studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEYzHK2I3M_KFHb4vAsweAK--SVwdvfZabjypYTSoxjmTA6szMAaLdk7fif0lLaRATdkBS6M2PuStL2VDAH3wWT0XMSnM1j20uUnWch8xyaJ3pXEF37_LLeGJ-iOIITqCmWC6Efy5h2_PE8EOtmE2BTN5YDbr6-9xbj2MqHdBn6feI94ZcxJkQkcRuJrF309lSXIUFZrdSOj7q4zH504UM9prbC3zj1mGNIK971hTeM7jjNC2fhZK_D7jRH8QMcNbSusZmGoJLDUM"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between">
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Delivered</span>
+<span class="text-xs font-medium text-on-surface-variant">March 28, 2024</span>
+</div>
+<h4 class="text-lg font-jakarta font-bold">Precision Shell II — Obsidian</h4>
+<p class="text-xs text-on-surface-variant mt-1">Order #K-88122 • $415.00</p>
+</div>
+<div class="flex gap-2">
+<button class="bg-surface-container-highest text-on-surface px-5 py-2 rounded-full text-xs font-bold transition-all active:scale-95">Reorder</button>
+<button class="bg-on-surface text-surface px-5 py-2 rounded-full text-xs font-bold transition-all active:scale-95">Details</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Recommendation / Upsell (Asymmetric Full Width Callout) -->
+<section class="col-span-12 mt-8">
+<div class="relative bg-inverse-surface rounded-3xl overflow-hidden min-h-[300px] flex items-center p-12">
+<div class="absolute inset-0 opacity-40">
+<img alt="Hero Background" class="w-full h-full object-cover" data-alt="moody lifestyle photography of runner on urban street at twilight with neon highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4412KCWWj0xYT3-BkdqC9vwbH60frXosyZGnvD2pA6TFyaH8Td3vY2TfCDNaLlFcVide0wH-JUu_EmxVdYYy7UQElJi2hPNlYBlJEwk-NzqQ3klKKsT978vVmbsRUYE_PQ3Nlmxq8xr3D5Mc14cAEwNPK1n1L6a6V_UovEEuOs8XPWyD2pFD4FxFF643AvuuaaTxuIlhPLO1860rc0lwvKEeAdCt0_dLvQdmEVoGB154XYQaGC20C8OFHgOD2ptupoGiVi6UaMxc"/>
+</div>
+<div class="relative z-10 max-w-lg">
+<span class="inline-block bg-primary text-on-primary text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1 rounded-full mb-6">Exclusive Early Access</span>
+<h2 class="text-4xl font-jakarta font-black text-white leading-tight">The Aero-Line Archive Drops Tomorrow.</h2>
+<p class="text-inverse-on-surface mt-4 font-body text-lg">As a Platinum member, you have a 12-hour head start on the rarest drops of the season.</p>
+<button class="mt-8 bg-surface-container-lowest text-on-surface px-10 py-4 rounded-full font-label text-xs uppercase tracking-widest hover:bg-primary-fixed transition-all active:scale-95 font-bold">
+                                View Collection
+                            </button>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Integration -->
+<footer class="bg-slate-100 dark:bg-slate-900 w-full py-20 px-12 mt-20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 w-full max-w-[1440px] mx-auto">
+<div class="col-span-1">
+<span class="text-xl font-black text-slate-900 dark:text-white font-jakarta">KINETIC</span>
+<p class="mt-4 text-xs font-['Manrope'] uppercase tracking-widest text-slate-500 leading-loose">
+                            © 2024 Kinetic Gallery. <br/>All rights reserved.
+                        </p>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">Shop</h4>
+<a class="text-xs uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors" href="#">Editorial</a>
+<a class="text-xs uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors" href="#">Archive</a>
+<a class="text-xs uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors" href="#">New Drops</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">Service</h4>
+<a class="text-xs uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors" href="#">FAQ</a>
+<a class="text-xs uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors" href="#">Shipping &amp; Returns</a>
+<a class="text-xs uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors" href="#">Support</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">About</h4>
+<a class="text-xs uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors" href="#">Sustainability</a>
+<a class="text-xs uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors" href="#">Privacy Policy</a>
+<a class="text-xs uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors" href="#">About Us</a>
+</div>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

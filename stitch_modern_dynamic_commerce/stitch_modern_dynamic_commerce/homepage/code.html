@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#5f0656",
+                        "secondary-dim": "#504f4f",
+                        "error": "#b41340",
+                        "primary-fixed-dim": "#718bff",
+                        "surface": "#f5f6f7",
+                        "inverse-primary": "#6d88ff",
+                        "secondary-container": "#e5e2e1",
+                        "error-container": "#f74b6d",
+                        "on-error-container": "#510017",
+                        "tertiary": "#913983",
+                        "on-secondary-container": "#525151",
+                        "tertiary-dim": "#832c76",
+                        "surface-variant": "#dadddf",
+                        "tertiary-fixed-dim": "#e883d2",
+                        "inverse-surface": "#0c0f10",
+                        "on-surface-variant": "#595c5d",
+                        "secondary-fixed": "#e5e2e1",
+                        "primary": "#0846ed",
+                        "tertiary-fixed": "#f790e0",
+                        "secondary-fixed-dim": "#d7d4d3",
+                        "primary-dim": "#003cd3",
+                        "surface-container": "#e6e8ea",
+                        "outline": "#757778",
+                        "on-surface": "#2c2f30",
+                        "on-primary-fixed-variant": "#00207e",
+                        "on-secondary-fixed-variant": "#5c5b5b",
+                        "primary-fixed": "#859aff",
+                        "on-tertiary": "#ffeef6",
+                        "surface-container-high": "#e0e3e4",
+                        "surface-tint": "#0846ed",
+                        "on-secondary": "#f5f2f1",
+                        "surface-container-low": "#eff1f2",
+                        "surface-container-highest": "#dadddf",
+                        "error-dim": "#a70138",
+                        "on-tertiary-fixed-variant": "#6a1460",
+                        "on-background": "#2c2f30",
+                        "on-tertiary-fixed": "#380033",
+                        "surface-bright": "#f5f6f7",
+                        "on-primary-fixed": "#000000",
+                        "secondary": "#5c5b5b",
+                        "on-primary": "#f2f1ff",
+                        "on-primary-container": "#001867",
+                        "background": "#f5f6f7",
+                        "surface-dim": "#d1d5d7",
+                        "inverse-on-surface": "#9b9d9e",
+                        "tertiary-container": "#f790e0",
+                        "on-error": "#ffefef",
+                        "outline-variant": "#abadae",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#859aff",
+                        "on-secondary-fixed": "#403f3f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            backdrop-filter: blur(24px);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #0846ed 0%, #859aff 100%);
+        }
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-background font-body antialiased">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl no-border bg-zinc-100/50">
+<div class="flex justify-between items-center px-8 py-4 max-w-[1440px] mx-auto">
+<div class="text-2xl font-black tracking-tighter text-zinc-900 font-headline">KINETIC</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-blue-600 font-bold border-b-2 border-blue-600 font-['Plus_Jakarta_Sans'] tracking-tight transition-colors duration-300" href="#">New Arrivals</a>
+<a class="text-zinc-600 font-medium font-['Plus_Jakarta_Sans'] tracking-tight hover:text-blue-500 transition-colors duration-300" href="#">Collections</a>
+<a class="text-zinc-600 font-medium font-['Plus_Jakarta_Sans'] tracking-tight hover:text-blue-500 transition-colors duration-300" href="#">Curated</a>
+<a class="text-zinc-600 font-medium font-['Plus_Jakarta_Sans'] tracking-tight hover:text-blue-500 transition-colors duration-300" href="#">Archive</a>
+</div>
+<div class="flex items-center space-x-6">
+<button class="scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-zinc-900" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-zinc-900" data-icon="person">person</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative h-[921px] flex items-center px-8 md:px-20 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Hero" class="w-full h-full object-cover grayscale brightness-75" data-alt="Modern architectural structure with sharp shadows and blue sky, high-fashion editorial aesthetic with dramatic lighting and clean lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp0gy9Hz8tWhYURQ8Zz7JTWkszKBCdRviLvghiKimm4mUdhjX-NZ6MeVXGE7DE_JfPEPyvPto4HQmXNTu5NUcQqNLB5H6XFGspjBG6wKtyIVVEpVv0lvaIAL93csDgq4VYYjnzFXtKB2rD03ZWQFbfU8Kh_lRNL92zUNH73nJFB5wSGtt80qIHuy4rCIKvYyUZOWsLZlWYI_HDApzFTsgY_NHrM-RR2lbUP2fmt7M-1fFOvv0UwnVGoS3L6c7ZquI1uKKiNB4MCoU"/>
+</div>
+<div class="relative z-10 max-w-4xl">
+<span class="label-md uppercase tracking-[0.2em] font-label text-on-primary mb-6 block bg-primary/20 backdrop-blur-md inline-block px-4 py-1 rounded-full">Season 04 / Kinetic Energy</span>
+<h1 class="font-headline text-[4rem] md:text-[7rem] font-extrabold leading-[0.9] tracking-tighter text-white mb-8">
+                    FUTURE<br/><span class="text-primary-container">UNFOLDING.</span>
+</h1>
+<p class="text-white/80 text-lg md:text-xl max-w-lg mb-10 font-body">
+                    A curated selection of technical apparel and avant-garde accessories designed for the modern metropolitan landscape.
+                </p>
+<div class="flex gap-4">
+<button class="primary-gradient text-on-primary px-8 py-4 rounded-full font-bold text-sm tracking-widest uppercase hover:opacity-90 transition-opacity">
+                        Explore Collection
+                    </button>
+<button class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-full font-bold text-sm tracking-widest uppercase hover:bg-white/20 transition-all">
+                        Watch Film
+                    </button>
+</div>
+</div>
+</section>
+<!-- New Arrivals Section -->
+<section class="py-32 bg-surface">
+<div class="max-w-[1440px] mx-auto px-8">
+<div class="flex justify-between items-end mb-16">
+<div>
+<h2 class="font-headline text-5xl font-black tracking-tighter text-on-surface mb-2">NEW ARRIVALS</h2>
+<p class="text-secondary font-medium uppercase tracking-widest text-xs">Fresh drops from the Kinetic lab</p>
+</div>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 hover:text-primary-dim transition-colors" href="#">View All Drops</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<!-- Product Card 1 -->
+<div class="group">
+<div class="aspect-[3/4] bg-surface-container-lowest rounded-xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Side profile of a sleek neon red running shoe on a clean white background with soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEWaNJpcnYf--Xczix8UZLlGJD4NJSs_xxLfGABsktaE-TM6MPjr89Drto9HRxc8hE5WfTLXKxqG3iiC1crja5oavgivSbKSuIatMinxLG22Wdl35w-BnpQBGDcjjT1VlbU3z4KeKAQDAF5E9zVgC_ufxX0Ntm53__86pZ7OBcOfQD2Ti_bzEVAnwgr2GXcgg7mQ1gsEzKhfcbR1B09s6Ceg2onAP-qSInhRef97UmpHAIGXnD1JA7Sobx1zSMlChb0hWFFvZEJHM"/>
+</div>
+<div class="space-y-1">
+<h3 class="font-headline text-lg font-bold text-on-surface">KINETIC PULSE R1</h3>
+<p class="text-secondary font-label text-sm uppercase tracking-wider">Performance Footwear</p>
+<p class="text-primary font-bold mt-2">$240.00</p>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group mt-12">
+<div class="aspect-[3/4] bg-surface-container-lowest rounded-xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Premium minimalist silver watch with white face and leather strap, soft diffused top lighting on light grey surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHDAnB8fEGjkIUE6fPuryxilYeymhfHcaqmH5woANxI7F8Nf3Z33g03t4ubCkhNuadJWlaDty4p7kaGKsfwAE-VrnNExUUFX-Pjy6-7pDE9ZB98tUCzhhPmT8Aj0KQmLdyUbTcWU3kYz-bC2lMdveFSnguLSTEoBkRlmjlBSha8Sop8xXGW18x0xJOmlaS1NpEZvktrHJe6ExFBe7KHz2h61xPXxnTGWEZPp9YsHZNXfI53d7ElXBsWOnoMK0lslFEKHQTh3LnyCw"/>
+</div>
+<div class="space-y-1">
+<h3 class="font-headline text-lg font-bold text-on-surface">CHRONOS TECH 02</h3>
+<p class="text-secondary font-label text-sm uppercase tracking-wider">Precision Accessories</p>
+<p class="text-primary font-bold mt-2">$380.00</p>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group">
+<div class="aspect-[3/4] bg-surface-container-lowest rounded-xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Sleek black professional headphones on a textured dark background with dramatic moody blue rim lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz8ZnbZ0jpOdMggS6dgwGZdtsHWjV9WJyXpji4Wg3vuy3ytQnVN46tDq6GUTq8S7GqzRZ3tCfnuwKdz_yIp888V8w0OEx6b8E233ClxJWBwGlSnRYptRqDW2rcCEO4J8rTKAhhmyViSIv3OkZNAWI7R28FoYlTxUJOR4L213iohQ7P1l5K0FjLHyg3ac2tRAvVDo262cAydZRs-wvBHBylx6BqxsTCTwHHP03kHRwX9J3eRUup4Yt0wXN8WRBApQMFj0TMiQwUc3c"/>
+</div>
+<div class="space-y-1">
+<h3 class="font-headline text-lg font-bold text-on-surface">SONIC SHIELD V1</h3>
+<p class="text-secondary font-label text-sm uppercase tracking-wider">Audio Engineering</p>
+<p class="text-primary font-bold mt-2">$310.00</p>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group mt-12">
+<div class="aspect-[3/4] bg-surface-container-lowest rounded-xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Luxury minimalist black leather handbag with silver hardware on a neutral beige background, editorial studio shot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxEzkpggZbkD2YeJREiF63CCargm-F4v3tWa2hoOrjxKrkJHyQJvgE7hYTh9m5dwzqXdf-hQ3UuHNv368ftueiS2fr5C0Y-mgc9nNdwRPpR3U3VvcG2o5Cr6qF7yqTcoCElIn_97nKm_CF9BDeIRVfFHpqCzqvfFU5itZL0aEMJUaC32TQw5ZajKclhYvPYSaTMCRKXDkxoZk9K3Hb6xTHsDkn9QkCuPME81SjCgB-dpfzMlqH0Fe__lpR_ZQCrnBp7_hK5t11e9I"/>
+</div>
+<div class="space-y-1">
+<h3 class="font-headline text-lg font-bold text-on-surface">CARGO MODULE XL</h3>
+<p class="text-secondary font-label text-sm uppercase tracking-wider">Utility Carry</p>
+<p class="text-primary font-bold mt-2">$450.00</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trending Collections - Bento Grid -->
+<section class="py-20 bg-surface-container-low">
+<div class="max-w-[1440px] mx-auto px-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+<div class="md:col-span-2 md:row-span-2 relative rounded-xl overflow-hidden group">
+<img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" data-alt="High-fashion model walking in urban setting, wearing oversized technical trench coat, dynamic motion blur in background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhUftwWOivwn3P-uqL7lNdMAUZvL9Ty5iOPKjGovUrDJiYnx2kNsKqkxHVAzQKvMhY5qjdPtU8HSU5i-pMFijxwUoef88gvFvCsUL2AcZPutuTyeU2zhQaY7pKlFTJyRxTL8xalNh7Kb4tkAUuJ1ov-dBC6xQscNQgQAVrokkRJrmQ4Z9lXhwdhT-BTnD1CmxO8idM7GMfRnl69MzyyLBfDYoKICEopwxllA1yY-j1jg7vA72jhE4fNFHcHA1QGuLQpQcUfNsG-4E"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-12">
+<h3 class="text-white font-headline text-5xl font-black mb-4">THE NEON<br/>NOMAD</h3>
+<button class="w-fit bg-white text-on-surface px-6 py-3 rounded-full font-bold text-xs tracking-widest uppercase hover:bg-primary hover:text-white transition-colors">Shop Collection</button>
+</div>
+</div>
+<div class="relative rounded-xl overflow-hidden group">
+<img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" data-alt="Vibrant streetwear apparel against a bright yellow wall, high contrast lighting and bold colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCroY1DNP-mxaOHYr2cS8CEP16JR0xV2KnAhPX0wX_zXyRu08x2MvzEu2lGM2OBvGfzcmRVlrhDqKMtHH9dPqHtM28V_Cv2RMk3SWH7MPZNL4qY8J65cDKMHCs_-z9o64G9iifxEC26DoM8k7t0K0f9UoGC3_DeUmcAohGXUX3OiEYcQp48FTU8xg9XdY9c4SNVPDjsc1lM4T1gV4Y9jncBfCAVYeweolnrlNMZZ9d0O5xpUQM-oFUnHEFWkMdOCXNxVIZG9rplzlQ"/>
+<div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center p-8 text-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
+<h4 class="text-white font-headline text-2xl font-bold mb-2">CYBER PASTEL</h4>
+<p class="text-white/80 text-sm mb-4">Soft Tones. Hard Lines.</p>
+</div>
+</div>
+<div class="relative rounded-xl overflow-hidden group">
+<img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" data-alt="Close up of high-end textile textures and technical fabrics in monochrome grey tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX54HKr-utEAqEcs32z-e0N57YTZrSAZc1XRkHK4g5rfJYjuwtLdI45a1E3JAlE5wM3lMe_hcxLdTmHLkPiY408q3bm1NZwzpF59fAVu5N_dzFfqCAumobGdLqzqLKeXT37H_Hc8JFKAr0IyyHsVutaipg3yu1SsD86nKKfiytAZj81tqCYka4neqNEPPzeKvyVcw3US13PT2vmXh-74Enu647wr_s9RNJ_QFfvuJD3JqLdz6qrzXiUKmzAzmAzT_u3aviZHBKJdo"/>
+<div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center p-8 text-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
+<h4 class="text-white font-headline text-2xl font-bold mb-2">MONO-LITH</h4>
+<p class="text-white/80 text-sm mb-4">The Art of Greyscale</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Curated Staff Picks -->
+<section class="py-32 bg-surface">
+<div class="max-w-[1440px] mx-auto px-8">
+<div class="mb-20 text-center max-w-2xl mx-auto">
+<h2 class="font-headline text-5xl font-black tracking-tighter text-on-surface mb-6">CURATED BY KINETIC</h2>
+<p class="text-on-surface-variant font-body">Our design team selects the most impactful pieces that define this month's aesthetic direction.</p>
+</div>
+<div class="flex flex-col md:flex-row gap-16 items-center">
+<div class="w-full md:w-1/2">
+<div class="relative bg-surface-container-high rounded-full aspect-square flex items-center justify-center p-12 overflow-hidden">
+<img class="w-full h-full object-contain relative z-10 hover:scale-110 transition-transform duration-500" data-alt="Close-up of a high-end designer sneaker with complex paneling and premium leather textures, studio shot on white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDimHjrLgCGOFIB5qn3anrQYRSpKcmI9Z1-vgCPfrTNnoVspLMx4jKMNhVFn6qrcKZofIuaYqcAZaHJ9ERVzK1q4KuraRBXUL0TMnUfc-0p5vSuwlO-J1D41IwJMxbjQ1da5Zs5y9yxSvBfqHgSumLeMKs6E1BW3AYz02v-x5ZkiV-xr2EyILiCYLLCM7sPh_1Pn1jMDXlPXeQYFATEFrQz85Jxx4PyI60yxCqwd8uCpZxzVd8rQHj2PafH2a6BpUezp4VGdQpTC5I"/>
+<div class="absolute inset-0 bg-primary/5 rounded-full animate-pulse"></div>
+</div>
+</div>
+<div class="w-full md:w-1/2 space-y-8">
+<div class="inline-flex items-center space-x-2 text-primary">
+<span class="material-symbols-outlined fill-1" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label text-xs uppercase font-bold tracking-widest">Editor's Choice</span>
+</div>
+<h3 class="font-headline text-4xl md:text-5xl font-black text-on-surface leading-tight">THE VELOCITY<br/>FRAME RUNNER</h3>
+<p class="text-on-surface-variant text-lg leading-relaxed">
+                            Engineered with a proprietary responsive foam and reinforced carbon-fiber lattice, the Velocity Frame is more than a sneaker—it's a kinetic instrument for the urban athlete.
+                        </p>
+<div class="flex items-center space-x-12 pt-4">
+<div>
+<p class="text-secondary-dim text-xs font-bold uppercase tracking-widest mb-1">Colorway</p>
+<div class="flex space-x-2">
+<div class="w-6 h-6 rounded-full bg-on-background"></div>
+<div class="w-6 h-6 rounded-full bg-primary-container"></div>
+<div class="w-6 h-6 rounded-full bg-surface-variant"></div>
+</div>
+</div>
+<div>
+<p class="text-secondary-dim text-xs font-bold uppercase tracking-widest mb-1">Release</p>
+<p class="font-bold text-on-surface">SEPT 2024</p>
+</div>
+</div>
+<button class="primary-gradient text-on-primary w-full md:w-auto px-12 py-5 rounded-full font-bold text-sm tracking-widest uppercase shadow-xl hover:translate-y-[-2px] transition-transform">
+                            Add to Bag — $295.00
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-20 bg-zinc-100 dark:bg-zinc-950 font-['Manrope'] text-sm uppercase tracking-widest">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-16 w-full">
+<div class="col-span-1 md:col-span-1">
+<div class="text-lg font-bold text-zinc-900 dark:text-zinc-50 mb-6">KINETIC</div>
+<p class="text-zinc-500 normal-case tracking-normal mb-8 max-w-xs">Exploring the intersection of movement, technology, and aesthetic precision since 2018.</p>
+</div>
+<div>
+<h4 class="text-zinc-900 dark:text-zinc-50 font-bold mb-6">Shop</h4>
+<ul class="space-y-4">
+<li><a class="text-zinc-500 hover:text-blue-600 transition-all opacity-80 hover:opacity-100" href="#">All Products</a></li>
+<li><a class="text-zinc-500 hover:text-blue-600 transition-all opacity-80 hover:opacity-100" href="#">Collaborations</a></li>
+<li><a class="text-zinc-500 hover:text-blue-600 transition-all opacity-80 hover:opacity-100" href="#">The Lab</a></li>
+<li><a class="text-zinc-500 hover:text-blue-600 transition-all opacity-80 hover:opacity-100" href="#">Gift Cards</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-zinc-900 dark:text-zinc-50 font-bold mb-6">Support</h4>
+<ul class="space-y-4">
+<li><a class="text-zinc-500 hover:text-blue-600 transition-all opacity-80 hover:opacity-100" href="#">Shipping &amp; Returns</a></li>
+<li><a class="text-zinc-500 hover:text-blue-600 transition-all opacity-80 hover:opacity-100" href="#">Sustainability</a></li>
+<li><a class="text-zinc-500 hover:text-blue-600 transition-all opacity-80 hover:opacity-100" href="#">Contact</a></li>
+<li><a class="text-zinc-500 hover:text-blue-600 transition-all opacity-80 hover:opacity-100" href="#">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-zinc-900 dark:text-zinc-50 font-bold mb-6">Connect</h4>
+<ul class="space-y-4">
+<li><a class="text-zinc-500 hover:text-blue-600 transition-all opacity-80 hover:opacity-100" href="#">Instagram</a></li>
+<li><a class="text-zinc-500 hover:text-blue-600 transition-all opacity-80 hover:opacity-100" href="#">Twitter</a></li>
+<li><a class="text-zinc-500 hover:text-blue-600 transition-all opacity-80 hover:opacity-100" href="#">Newsletter</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-zinc-200 dark:border-zinc-800 px-12 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-zinc-500">© 2024 KINETIC GALLERY. ALL RIGHTS RESERVED.</div>
+<div class="flex space-x-8">
+<a class="text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-50 transition-all" href="#">Privacy Policy</a>
+<a class="text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-50 transition-all" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</body></html>
