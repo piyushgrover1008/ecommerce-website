@@ -36,7 +36,7 @@ class Router {
 
   async initGlobalComponents() {
     this.navbar.innerHTML = await Navbar.render();
-    if (Navbar.afterRender) Navbar.afterRender();
+    Navbar.init();
     
     this.footer.innerHTML = await Footer.render();
     if (Footer.afterRender) Footer.afterRender();
@@ -80,7 +80,7 @@ class Router {
       }
 
       // Update Navbar state (active links)
-      if (Navbar.afterRender) Navbar.afterRender();
+      Navbar.updateActiveLinks();
 
       // Scroll to top
       window.scrollTo(0, 0);

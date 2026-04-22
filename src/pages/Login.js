@@ -8,12 +8,12 @@ const Login = {
       <!-- Left Side: Editorial Content -->
       <section class="hidden md:flex md:w-7/12 relative overflow-hidden bg-surface-container-low p-16 flex-col justify-between">
         <div class="z-10">
-          <span class="text-2xl font-black tracking-tighter text-on-background font-display uppercase">KINETIC</span>
+          <span class="text-2xl font-black tracking-tighter text-on-background font-headline">KINETIC</span>
         </div>
         <div class="z-10 max-w-xl">
-          <p class="text-[10px] uppercase tracking-widest text-primary mb-4 font-bold">The Kinetic Gallery</p>
-          <h1 class="text-5xl lg:text-7xl font-bold tracking-tight text-on-background leading-tight mb-8 font-display italic">
-            ELEVATE YOUR <br/>MOTION.
+          <p class="font-label text-xs uppercase tracking-widest text-primary mb-4">The Kinetic Gallery</p>
+          <h1 class="font-headline text-5xl lg:text-7xl font-bold tracking-tight text-on-background leading-tight mb-8 italic">
+            Elevate Your <br/>Motion.
           </h1>
           <div class="flex gap-4">
             <div class="w-12 h-1 bg-primary"></div>
@@ -23,7 +23,7 @@ const Login = {
           </div>
         </div>
         <div class="z-10">
-          <p class="text-[10px] uppercase tracking-[0.2em] text-secondary/50 font-bold">Established 2026 © Kinetic Collective</p>
+          <p class="font-label text-[10px] uppercase tracking-[0.2em] text-outline font-bold">Established 2026 © Kinetic Collective</p>
         </div>
         <div class="absolute inset-0 z-0">
           <img class="w-full h-full object-cover grayscale brightness-75 scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb_5dbHT88FG_5sKiuiXv-HcgSsULwvbo1v0-EDY5AI5s_qVbCg6Q3mXHLY8DN8-En_ZRJstgK4F-HjGf5_pr1RA4lFXf6fUAde0OeglWDP-1oWegrKeqPCfw5PS6qcSuJRsYLvAhTXk0f_t0k8oa-bE6P8Fxi68v1UKkfP4ztG0134F9bwtJcbfA4WWanN-nig7DZmKc3HnSWQZ8JaJtAMLm-gCT8GzjzaCBNp8zsh3nohu0dqhpQTpz3G7Fe6FV_KtuyO8H3QlM">
@@ -35,24 +35,44 @@ const Login = {
       <section class="flex-1 bg-surface-container-lowest flex flex-col justify-center px-8 md:px-20 lg:px-32 py-20 relative">
         <div class="max-w-md w-full mx-auto">
           <div class="md:hidden mb-12">
-            <span class="text-xl font-black tracking-tighter text-on-background font-display uppercase">KINETIC</span>
+            <span class="text-xl font-black tracking-tighter text-on-background font-headline uppercase">KINETIC</span>
           </div>
           <div class="mb-10">
-            <h2 class="text-3xl font-bold text-on-background tracking-tight mb-2 font-display italic">WELCOME BACK</h2>
+            <h2 class="font-headline text-3xl font-bold text-on-background tracking-tight mb-2 italic uppercase">WELCOME BACK</h2>
             <p class="text-secondary">Sign in to your account or <a href="#/register" class="text-primary font-bold hover:underline underline-offset-4">create a new one</a></p>
+          </div>
+
+          <!-- Social Logins -->
+          <div class="grid grid-cols-2 gap-4 mb-10">
+            <button type="button" class="flex items-center justify-center gap-2 py-4 px-4 rounded-full bg-surface-container-low text-on-surface font-label text-xs uppercase font-bold tracking-wider hover:bg-surface-container-high transition-colors active:scale-95 duration-200">
+              <span class="material-symbols-outlined text-lg">google</span>
+              Google
+            </button>
+            <button type="button" class="flex items-center justify-center gap-2 py-4 px-4 rounded-full bg-surface-container-low text-on-surface font-label text-xs uppercase font-bold tracking-wider hover:bg-surface-container-high transition-colors active:scale-95 duration-200">
+              <span class="material-symbols-outlined text-lg">apple</span>
+              Apple
+            </button>
+          </div>
+
+          <!-- Divider -->
+          <div class="relative mb-10 flex items-center justify-center">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full h-[1px] bg-surface-container"></div>
+            </div>
+            <span class="relative bg-surface-container-lowest px-4 text-[10px] uppercase tracking-widest text-secondary font-bold">Or use email</span>
           </div>
 
           <form id="login-form" class="space-y-8">
             <div class="group">
-              <label class="block text-[10px] uppercase font-black tracking-widest text-secondary group-focus-within:text-primary transition-colors mb-2">EMAIL ADDRESS</label>
-              <input type="email" name="email" placeholder="name@gallery.com" required class="w-full bg-surface-container-low border-none rounded-xl px-5 py-4 text-on-surface font-body placeholder:text-outline-variant/30 focus:ring-4 focus:ring-primary/10 transition-all">
+              <label class="block font-label text-[10px] uppercase font-black tracking-widest text-secondary group-focus-within:text-primary transition-colors mb-2" for="email">EMAIL ADDRESS</label>
+              <input type="email" id="email" name="email" placeholder="name@gallery.com" required class="w-full bg-surface-container-low border-none rounded-xl px-5 py-4 text-on-surface font-body placeholder:text-outline-variant/30 focus:ring-4 focus:ring-primary/10 transition-all">
             </div>
             <div class="group">
               <div class="flex justify-between items-end mb-2">
-                <label class="block text-[10px] uppercase font-black tracking-widest text-secondary group-focus-within:text-primary transition-colors">PASSWORD</label>
-                <a href="#" class="text-[10px] uppercase font-black tracking-widest text-primary hover:underline underline-offset-2">Forgot?</a>
+                <label class="block font-label text-[10px] uppercase font-black tracking-widest text-secondary group-focus-within:text-primary transition-colors" for="password">PASSWORD</label>
+                <a href="#" class="font-label text-[10px] uppercase font-black tracking-widest text-primary hover:underline underline-offset-2">Forgot?</a>
               </div>
-              <input type="password" name="password" placeholder="••••••••" required class="w-full bg-surface-container-low border-none rounded-xl px-5 py-4 text-on-surface font-body placeholder:text-outline-variant/30 focus:ring-4 focus:ring-primary/10 transition-all">
+              <input type="password" id="password" name="password" placeholder="••••••••" required class="w-full bg-surface-container-low border-none rounded-xl px-5 py-4 text-on-surface font-body placeholder:text-outline-variant/30 focus:ring-4 focus:ring-primary/10 transition-all">
             </div>
             <div class="flex items-center gap-3">
               <input type="checkbox" id="remember" class="w-5 h-5 rounded-lg border-outline-variant/20 text-primary focus:ring-primary">
@@ -68,7 +88,21 @@ const Login = {
             <a href="#/register" class="text-xs uppercase font-black tracking-widest text-on-surface hover:text-primary transition-colors">CREATE ACCOUNT</a>
           </div>
         </div>
+
+        <!-- Floating Support -->
+        <div class="absolute bottom-8 right-8">
+          <button class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface hover:bg-on-surface hover:text-surface transition-all active:scale-90">
+            <span class="material-symbols-outlined">help_outline</span>
+          </button>
+        </div>
       </section>
+
+      <!-- Background Hint -->
+      <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] opacity-40">
+        <div class="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-primary-container/20 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-secondary-container/10 rounded-full blur-[100px]"></div>
+      </div>
+
     `;
     return section;
   },

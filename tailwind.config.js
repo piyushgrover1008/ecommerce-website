@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx,html}",
@@ -21,7 +22,9 @@ export default {
       },
       fontFamily: {
         display: ["'Plus Jakarta Sans'", "sans-serif"],
+        headline: ["'Plus Jakarta Sans'", "sans-serif"],
         body: ["Manrope", "sans-serif"],
+        label: ["Manrope", "sans-serif"],
       },
       borderRadius: {
         'md': '0.375rem',

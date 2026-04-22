@@ -33,6 +33,11 @@ const Navbar = {
               <span class="text-xs font-medium tracking-wide">SEARCH</span>
             </button>
 
+            <!-- Dark Mode Toggle -->
+            <button class="text-on-surface hover:text-primary transition-colors" id="theme-toggle">
+              <span class="material-symbols-outlined text-[24px]" id="theme-toggle-icon">dark_mode</span>
+            </button>
+
             <!-- Account -->
             <a href="${accountHash}" class="text-on-surface hover:text-primary transition-colors">
               <span class="material-symbols-outlined text-[24px]">person</span>
@@ -79,7 +84,7 @@ const Navbar = {
       </div>
     `;
   },
-  afterRender: () => {
+  init: () => {
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const mobileMenuClose = document.getElementById('mobile-menu-close');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -88,20 +93,49 @@ const Navbar = {
     const cartCount = document.getElementById('cart-count');
 
     // Initial cart count
-    cartCount.innerText = cartStore.totalItems;
+    if (cartCount) cartCount.innerText = cartStore.totalItems;
 
     // Listen for cart updates
     eventBus.on(EVENTS.CART_UPDATED, () => {
-      cartCount.innerText = cartStore.totalItems;
-      cartCount.classList.add('scale-125');
-      setTimeout(() => cartCount.classList.remove('scale-125'), 200);
+      if (cartCount) {
+        cartCount.innerText = cartStore.totalItems;
+        cartCount.classList.add('scale-125');
+        setTimeout(() => cartCount.classList.remove('scale-125'), 200);
+      }
     });
 
-    // Search button
-    const searchBtn = document.querySelector('button .material-symbols-outlined[innerText="search"]')?.parentElement || document.querySelector('.lg\\:flex[text*="SEARCH"]');
-    // Simplified selector for the search button
-    const searchButtons = document.querySelectorAll('button');
-    searchButtons.forEach(btn => {
+    // Theme Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleIcon = document.getElementById('theme-toggle-icon');
+    
+    const updateThemeIcon = () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      if (themeToggleIcon) themeToggleIcon.innerText = isDark ? 'light_mode' : 'dark_mode';
+    };
+
+    // Init theme
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    updateThemeIcon();
+
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        if (document.documentElement.classList.contains('dark')) {
+          document.documentElement.classList.remove('dark');
+          localStorage.theme = 'light';
+        } else {
+          document.documentElement.classList.add('dark');
+          localStorage.theme = 'dark';
+        }
+        updateThemeIcon();
+      });
+    }
+
+    // Search buttons
+    document.querySelectorAll('button').forEach(btn => {
       if (btn.innerText.includes('SEARCH')) {
         btn.addEventListener('click', () => SearchOverlay.open());
       }
@@ -119,17 +153,21 @@ const Navbar = {
       }
     };
 
-    mobileMenuToggle.addEventListener('click', () => toggleMenu(true));
-    mobileMenuClose.addEventListener('click', () => toggleMenu(false));
-    mobileMenuOverlay.addEventListener('click', () => toggleMenu(false));
+    if (mobileMenuToggle) mobileMenuToggle.addEventListener('click', () => toggleMenu(true));
+    if (mobileMenuClose) mobileMenuClose.addEventListener('click', () => toggleMenu(false));
+    if (mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', () => toggleMenu(false));
 
-    // Update active links
-    const currentHash = window.location.hash;
+    Navbar.updateActiveLinks();
+  },
+
+  updateActiveLinks: () => {
+    const currentHash = window.location.hash.split('?')[0];
     document.querySelectorAll('.nav-link').forEach(link => {
-      if (link.getAttribute('href') === currentHash) {
-        link.classList.add('text-primary');
-        link.classList.add('border-b-2');
-        link.classList.add('border-primary');
+      const href = link.getAttribute('href').split('?')[0];
+      if (href === currentHash) {
+        link.classList.add('text-primary', 'border-b-2', 'border-primary');
+      } else {
+        link.classList.remove('text-primary', 'border-b-2', 'border-primary');
       }
     });
   }

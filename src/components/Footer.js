@@ -60,6 +60,31 @@ const Footer = {
         </div>
       </div>
     `;
+  },
+  afterRender: () => {
+    const form = document.querySelector('footer form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = form.querySelector('input');
+        const button = form.querySelector('button');
+        const email = input.value;
+        
+        if (email) {
+          button.innerText = 'check';
+          button.classList.add('text-primary');
+          input.value = 'THANK YOU FOR SUBSCRIBING';
+          input.disabled = true;
+          
+          setTimeout(() => {
+            button.innerText = 'arrow_forward';
+            button.classList.remove('text-primary');
+            input.value = '';
+            input.disabled = false;
+          }, 3000);
+        }
+      });
+    }
   }
 };
 
